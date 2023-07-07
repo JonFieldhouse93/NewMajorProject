@@ -11,4 +11,27 @@ public class StrangerScript : MonoBehaviour
     {
         ConversationManager.Instance.StartConversation(secondConversation);
     }
+
+    private void OnEnable()
+    {
+        ConversationManager.OnConversationStarted += ConversationStart;
+        ConversationManager.OnConversationEnded += ConversationEnd;
+    }
+
+    private void OnDisable()
+    {
+        ConversationManager.OnConversationStarted -= ConversationStart;
+        ConversationManager.OnConversationEnded -= ConversationEnd;
+    }
+
+
+    private void ConversationStart()
+    {
+        Debug.Log("Conversation started");
+    }
+
+    private void ConversationEnd()
+    {
+        Debug.Log("Conversation ended");
+    }
 }
